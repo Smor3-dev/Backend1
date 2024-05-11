@@ -27,7 +27,6 @@ app.get("/users", async (req, res) => {
   try {
     const { idUser } = req.params;
     const user = await userManager.getUserById(idUser);
-    // console.log(user);
     if (!user) res.status(404).json({ msg: "User not found" });
     else res.status(200).json(user);
   } catch (error) {
@@ -38,7 +37,7 @@ app.get("/users", async (req, res) => {
 
 app.post("/users", async (req, res) => {
   try {
-    // console.log(req.body);
+
     const user = await userManager.createUser(req.body);
     if (!user) res.status(404).json({ msg: "User already exists" });
     else res.status(200).json(user);
@@ -80,5 +79,5 @@ app.use(errorHandler);
 const PORT = 8080
 
 app.listen(PORT,()=>{
-    console.log(`Iniciando en puerto: 8080 ${PORT}`)
+    console.log(`Iniciando en puerto: ${PORT}`)
 })
