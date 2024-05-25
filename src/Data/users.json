@@ -1,10 +1,12 @@
 [
   {
     "id": 1,
-    "username": "Santi ",
-    "email": "smoreira@mail.com",
+    "username": "m0r3 ",
+    "mail": "smoreira@mail.com",
     "firstname": "Santiago",
-    "lastiname": "Moreira",
+    "lastname": "Moreira",
+    "phone": "091077433",
+    "age": "23", 
     "profile": "S:\\PROYECTOS\\Motorhouse\\src\\public\\images\\lmotohouse.png"
-}
-  ]
+  }
+]

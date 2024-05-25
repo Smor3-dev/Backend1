@@ -1,8 +1,8 @@
-import { Router } from "express";
+import { Router } from 'express';
 const router = Router();
 
-import UserManager from '../managers/user.manager.js';
-const userManager = new UserManager('./src/data/users.json');
+import UserManager from '../manager/user.manager.js';
+const userManager = new UserManager('./src/Data/users.json');
 
 router.get("/", async (req, res) => {
   try {
@@ -51,6 +51,15 @@ router.delete("/:idUser", async (req, res) => {
     if (!delUser) res.status(404).json({ msg: "Error delete user" });
     else
       res.status(200).json({ msg: `User id: ${idUser} deleted successfully` });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+});
+
+router.post("/register", async (req, res) => {
+  try {
+    const user = await userManager.createUser(req.body);
+    res.redirect('/users')
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
