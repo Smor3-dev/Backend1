@@ -9,7 +9,7 @@ router.get('/', (req, res)=>{
     res.render('vista1', { layout: 'index.handlebars' })
 })
 router.get('/vista2', (req, res)=>{
-    res.render('vista2', { layout: 'index.handlebars' })
+    res.render('vista2')
 })
 
 router.get('/vista3', (req, res)=>{
@@ -25,7 +25,7 @@ router.get('/realtimeproducts', (req, res)=>{
         Product: '',
         Price: ''
     };
-    res.render('realtimeproducts', { products, users, layout: 'index.handlebars' })
+    res.render('realtimeproducts', { users, layout: 'index.handlebars' })
 })
 
 const users = [
@@ -65,12 +65,8 @@ router.get('/actividad1', (req, res)=>{
     res.render('actividad1', { user });
 })
 
-router.get('/list', (req, res)=>{
-    res.render('list', { users })
-})
-
-router.get('/register', (req, res)=>{
-    res.render('formulario')
+router.get('/home', (req, res)=>{
+    res.render('home', { users })
 })
 
 router.get('/users', async(req, res)=>{
@@ -82,5 +78,4 @@ router.get('/form', async(req, res)=>{
     const user = await userManager.getUsers();
     res.render('formulario', { user })
 })
-//tengo que hacer uno pero como el de elegir el usuario especifico
 export default router;
