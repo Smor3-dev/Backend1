@@ -106,7 +106,7 @@ socketServer.on('connection', (socket)=>{
     console.log('Usuario desconectado');
   })
 
-  socket.emit('saludoDesdeBack', 'Bienvenido a websockets')
+  socket.emit('saludoDesdeBack', 'cliente conectado')
 
   socket.on('respuestaDesdeFront', (message)=>{
     console.log(message);

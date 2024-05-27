@@ -2,7 +2,7 @@ const socket = io();
 
 socket.on('saludoDesdeBack', (message)=>{
     console.log(message);
-    socket.emit('respuestaDesdeFront', 'Muchas gracias')
+    socket.emit('respuestaDesdeFront', 'Cliente conectado')
 })
 
 const form = document.getElementById('form')
