@@ -1,6 +1,8 @@
 import { Router } from "express";
 const router = Router();
 
+import * as controller from "../controllers/product.controllers.js";
+
 import { __dirname } from "../utils.js";
 
 import ProductManager from "../manager/product.manager.js";
@@ -75,8 +77,17 @@ router.delete('/', async(req, res)=>{
     }
 });
 
-export default router;
+router.get("/", controller.getAll);
 
+router.get("/:id", controller.getById);
+
+router.post("/", controller.create);
+
+router.put("/:id", controller.update);
+
+router.delete("/:id", controller.remove);
+
+export default router;
 
 
 
