@@ -6,7 +6,7 @@ import * as controller from "../controllers/product.controllers.js";
 import { __dirname } from "../utils.js";
 
 import ProductManager from "../manager/product.manager.js";
-const productManager = new ProductManager(`${__dirname}/Data/products.json`);
+const productManager = new ProductManager(`${__dirname}/Data/users.json`);
 
 import {productValidator} from '../middlewares/productValidator.js'
 
@@ -70,7 +70,7 @@ router.delete("/:idProd", async (req, res) => {
 router.delete('/', async(req, res)=>{
     try {
         await productManager.deleteFile();
-        res.send('products deleted successfully')
+        res.send('product deleted successfully')
     } catch (error) {
         res.status(404).json({ message: error.message });
 

@@ -8,5 +8,29 @@
       "phone": "091077433",
       "age": "23", 
       "profile": "S:\\PROYECTOS\\Motorhouse\\src\\public\\images\\lmotohouse.png"
+    },
+    {
+      "first_name": "Juan",
+      "last_name": "Pirez",
+      "email": "jp77@gmail.com",
+      "age": "24",
+      "password": "1234",
+      "role": "user"
+    },
+    {
+      "first_name": "fede",
+      "last_name": "desal",
+      "email": "fedesal@gmail.com",
+      "age": "26",
+      "password": "4321",
+      "role": "user"
+    },
+    {
+      "first_name": "romi",
+      "last_name": "dias",
+      "email": "romidias@gmail.com",
+      "age": "21",
+      "password": "romi1",
+      "role": "admin"
     }
   ]

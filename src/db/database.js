@@ -10,5 +10,3 @@ export const initMongoDB = async() => {
     console.log(`ERROR => ${error}`);
   }
 }
-
-initMongoDB()
