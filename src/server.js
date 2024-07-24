@@ -24,6 +24,7 @@ app.use('/users', userRouter);
 app.use('/products', productRouter);
 app.use('/carts', cartRouter);
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRouter);
 
 app.use(errorHandler);
 

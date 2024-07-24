@@ -43,7 +43,7 @@ router.get("/login", (req, res) => {
 router.post("/register", async (req, res) => {
   const { first_name, last_name, email, age, role, password } = req.body;
 
-  if (!first_name || !last_name || !email || !age || !password) {
+  if (!first_name || !email || !age || !password) {
     return res.status(400).json({
       error: "Missing fields",
     });
