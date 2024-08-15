@@ -1,7 +1,7 @@
 import fs from "fs";
 import { v4 as uuidv4 } from "uuid";
 
-export default class ProductManager {
+export class ProductManager {
   constructor(path) {
     this.path = path;
   }

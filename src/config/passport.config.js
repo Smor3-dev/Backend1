@@ -1,13 +1,13 @@
 import passport from "passport";
 import local from "passport-local";
-import jwt from "jsonwebtoken";
-import jwtStrategy from "passport-jwt";
+import jwt from "passport-jwt";
 import { userModel } from "../models/user.model.js";
 import { comparePassword } from "../utils/hash.js";
+import { config } from "./config.js";
 
 const LocalStrategy = local.Strategy;
-const JWTStrategy = jwtStrategy.Strategy;
-const ExtractJWT = jwtStrategy.ExtractJwt;
+const JWTStrategy = jwt.Strategy;
+const ExtractJWT = jwt.ExtractJwt;
 
 const initializePassport = () => {
   // Login Strategy
@@ -53,7 +53,7 @@ const initializePassport = () => {
     new JWTStrategy(
       {
         jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
-        secretOrKey: "s3cr3t",
+        secretOrKey: config.JWT_SECRET,
       },
       async (payload, done) => {
         try {
