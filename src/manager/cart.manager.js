@@ -57,7 +57,6 @@ export default class CartManager {
       let carts = await this.getAllCarts();
       const cartExist = await this.getCartById(idCart);
       if(!cartExist) throw new Error('Cart not found');
-      // console.log(cartExist);
       const existProdInCart = cartExist.products.find((prod) => prod.product === idProduct);
       if(!existProdInCart){
         const prod = {

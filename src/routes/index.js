@@ -1,7 +1,7 @@
 import { authorizations } from "../middlewares/authorization.middleware.js";
 import authRoutes from "./auth.routes.js";
 import cartRoutes from "./cart.router.js";
-import productRoutes from "./products.router.js";
+import productRoutes from "./product.routes.js";
 import { Router } from "express";
 
 const router = Router();

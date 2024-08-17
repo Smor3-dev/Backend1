@@ -1,7 +1,6 @@
 import express from 'express';
 import cartRouter from './routes/cart.router.js'
 import morgan from 'morgan';
-import routes from "./routes/index.js";
 import passport from "passport";
 import cookieParser from "cookie-parser";
 import userRouter from './routes/users.router.js';
@@ -28,7 +27,6 @@ app.use('/products', productRoutes);
 app.use('/carts', cartRouter);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRouter);
-app.use("/api", routes);
 
 
 app.use(errorHandler);

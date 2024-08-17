@@ -1,8 +1,8 @@
-import ProductDaoMongoDB from "../daos/mongodb/product.dao.js";
-import CartDaoMongoDB from "../daos/mongodb/cart.dao.js";
-import { CartModel } from "../daos/mongodb/models/cart.model.js";
+import ProductDaoMongoDB from "../daos/product.dao.js";
+import CartDaoMongoDB from "../daos/cart.dao.js";
+import { cartModel } from "../daos/mongodb/models/cart.model.js";
 import { createTicket } from '../daos/mongodb/ticket.dao.js';
-import { uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 const cartDao = new CartDaoMongoDB();
 const productDao = new ProductDaoMongoDB();
@@ -108,7 +108,7 @@ export const finalizarCompra = async (cartId, user) => {
       throw new Error('Usuario no válido o no autenticado');
     }
 
-    const cart = await CartModel.findById(cartId).populate("products.product");
+    const cart = await cartModel.findById(cartId).populate("products.product");
 
     if (!cart) {
       throw new Error('Carrito no encontrado');
@@ -135,7 +135,7 @@ export const finalizarCompra = async (cartId, user) => {
     }
 
     const ticket = await createTicket({
-      code: uuidv4(),  
+      code: uuidv4(),
       purchase_datetime: new Date(),
       amount: cart.products.reduce(
         (acc, curr) => acc + curr.quantity * curr.product.price,

@@ -1,4 +1,5 @@
 import * as service from '../services/cart.services.js'
+import * as cartService from '../services/cart.services.js';
 
 export const getAll = async (req, res, next) => {
     try {
@@ -112,14 +113,10 @@ export const addProdToCart = async (req, res, next) => {
     }
   };
 
-  // Entrega final
-
-  import * as cartService from '../services/cart.services.js';
-
-export const finalizarCompra = async (req, res) => {
+  export const finalizarCompra = async (req, res) => {
     try {
         const user = req.user; 
-        const result = await cartService.finalizarCompra(req.params.id, user);
+        const result = await cartService.finalizarCompra(req.params.id, user); 
         res.status(200).json(result);
     } catch (error) {
         console.error("Error al finalizar la compra:", error);
