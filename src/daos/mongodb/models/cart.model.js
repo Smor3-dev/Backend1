@@ -10,7 +10,7 @@ export const cartSchema = new Schema({
         },
         product: {
           type: Schema.Types.ObjectId,
-          ref: "products" // Referencia al modelo de productos
+          ref: "products" 
         }
       }
     ]

@@ -112,5 +112,22 @@ export const addProdToCart = async (req, res, next) => {
     }
   };
 
-  
-  
+  // Entrega final
+
+  import * as cartService from '../services/cart.services.js';
+
+export const finalizarCompra = async (req, res) => {
+    try {
+        const user = req.user; 
+        const result = await cartService.finalizarCompra(req.params.id, user);
+        res.status(200).json(result);
+    } catch (error) {
+        console.error("Error al finalizar la compra:", error);
+
+        if (error.message.includes('no tiene stock suficiente')) {
+            return res.status(400).json({ error: error.message });
+        }
+
+        res.status(500).json({ error: "Ocurrió un error al finalizar la compra" });
+    }
+};
