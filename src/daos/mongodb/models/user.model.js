@@ -1,27 +1,18 @@
-import mongoose from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate-v2';
+import { Schema, model } from "mongoose";
 
-const UserSchema = new mongoose.Schema({
-  first_name: { 
-    type: String, 
-    required: true,
-    index: true
-  },
-  last_name: { type: String, required: true },
-  age: { type: Number },
-  email:  { type: String, required: true, unique: true },  
-  password: { type: String, required: true },
-  role: { type: String, default: 'user'}
-});
+const userSchema = new Schema(
+    {
+        first_name: { type: String, required: true },
+        last_name: { type: String, required: true },
+        email: { type: String, required: true, unique: true },
+        age: { type: Number, required: true },
+        password: { type: String, required: true },
+        role: { type: String, enum: ["admin", "user"], default: "user" },
+        cart: [{ type: Schema.Types.ObjectId, ref: "cart"}],
+    },
+    {
+        timestamps: true,
+    }
+);
 
-UserSchema.plugin(mongoosePaginate);
-
-UserSchema.pre('find', function(){
-  this.populate('products')
-})
-
-export const UserModel = mongoose.model(
-  'users',
-  UserSchema
-); 
-
+export const userModel = model("user", userSchema);

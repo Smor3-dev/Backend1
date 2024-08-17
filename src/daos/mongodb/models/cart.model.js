@@ -16,4 +16,4 @@ export const cartSchema = new Schema({
     ]
   });
 
-export const CartModel = model("carts", cartSchema);
+export const cartModel = model("carts", cartSchema);

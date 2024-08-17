@@ -1,4 +1,4 @@
-import { ProductModel } from "./mongodb/models/product.model.js";
+import { productModel } from "./mongodb/models/product.model.js";
 
 export default class ProductDaoMongoDB {
   async getAll(page = 1, limit = 10, name, sort) {
@@ -6,7 +6,7 @@ export default class ProductDaoMongoDB {
       const filter = name ? { 'name': name } : {};
       let sortOrder = {};
       if(sort) sortOrder.price = sort === 'asc' ? 1 : sort === 'desc' ? -1 : null;
-      const response = await ProductModel.paginate(filter, { page, limit, sort: sortOrder });
+      const response = await productModel.paginate(filter, { page, limit, sort: sortOrder });
       return response;
     } catch (error) {
       console.log(error);
@@ -15,7 +15,7 @@ export default class ProductDaoMongoDB {
 
   async getById(id) {
     try {
-      const response = await ProductModel.findById(id);
+      const response = await productModel.findById(id);
       return response;
     } catch (error) {
       console.log(error);
@@ -24,7 +24,7 @@ export default class ProductDaoMongoDB {
 
   async create(obj) {
     try {
-      const response = await ProductModel.create(obj);
+      const response = await productModel.create(obj);
       return response;
     } catch (error) {
       console.log(error);
@@ -33,7 +33,7 @@ export default class ProductDaoMongoDB {
 
   async update(id, obj) {
     try {
-      const response = await ProductModel.findByIdAndUpdate(id, obj, {
+      const response = await productModel.findByIdAndUpdate(id, obj, {
         new: true,
       });
       return response;
@@ -44,7 +44,7 @@ export default class ProductDaoMongoDB {
 
   async delete(id) {
     try {
-      const response = await ProductModel.findByIdAndDelete(id);
+      const response = await productModel.findByIdAndDelete(id);
       return response;
     } catch (error) {
       console.log(error);

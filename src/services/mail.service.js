@@ -21,7 +21,7 @@ class MailService {
         
         <p style="font-size: 16px; color: red">Si tienes alguna pregunta, no dudes en contactarnos.</p>
         
-        <img src="cid:gatito.webp" alt="gatito" style="width: 100px; height: 100px; border-radius: 50%;">
+        <img src="cid:AClmotohouse" alt="moto" style="width: 100px; height: 100px; border-radius: 50%;">
         `;
         break;
 
@@ -46,15 +46,15 @@ class MailService {
     const message = this.getMessageTemplate(type, to);
 
     const info = await this.transporter.sendMail({
-      from: '"Equipo de Mensajes Masivos" <emi.perez997@gmail.com>',
-      to,
-      subject,
+      from: '"Equipo de Mensajes Masivos" <sandbox.smtp.mailtrap.io>',
+      to: "sa7ntiagomoreira77@gmail.com",
+      subject: "test",
       html: message,
       attachments: [
         {
-          filename: "gatito.webp",
-          path: "./public/gatito.webp",
-          cid: "gatito.webp",
+          filename: "lmotohouse.png",
+          path: "./public/images/lmotohouse.png",
+          cid: "AClmotohouse",
         },
       ],
     });
@@ -64,3 +64,4 @@ class MailService {
 }
 
 export const mailService = new MailService();
+

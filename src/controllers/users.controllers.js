@@ -29,19 +29,19 @@ export const getByEmail = async (req, res, next) => {
 export const getAll = async (req, res, next) => {
   try {
     const { page, limit } = req.query;
-    const response = await service.getAllUsers(page, limit);
+    const response = await service.getAll(page, limit);
     res.json(response);
-    // const next = response.hasNextPage ? `http://localhost:8080/users/all?page=${response.nextPage}` : null;
-    // const prev = response.hasPrevPage ? `http://localhost:8080/users/all?page=${response.prevPage}` : null;
-    // res.json({
-    //   payload: response.docs,
-    //   info: {
-    //     count: response.totalDocs,
-    //     pages: response.totalPages,
-    //     next,
-    //     prev
-    //   }
-    // })
+     const next = response.hasNextPage ? `http://localhost:8080/users/all?page=${response.nextPage}` : null;
+     const prev = response.hasPrevPage ? `http://localhost:8080/users/all?page=${response.prevPage}` : null;
+     res.json({
+       payload: response.docs,
+       info: {
+         count: response.totalDocs,
+         pages: response.totalPages,
+         next,
+         prev
+      }
+    })
   } catch (error) {
     next(error);
   }
@@ -144,14 +144,8 @@ class UserController {
   }
 
   async activate(req, res) {
-    // token = email encriptado
+
     const { token } = req.params;
-
-    // Chequear que el token sea válido
-
-    // Si el token es invalido o vence, devolver error
-
-    // Activar el usuario
   }
 }
 

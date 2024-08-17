@@ -1,13 +1,12 @@
 [
     {
-      "id": 1,
-      "username": "m0r3 ",
-      "mail": "smoreira@mail.com",
-      "firstname": "Santiago",
-      "lastname": "Moreira",
-      "phone": "091077433",
+      "first_name": "Santiago",
+      "last_name": "Moreira",
+      "email": "sa7ntiagomoreira77@gmail.com",
       "age": "23", 
-      "profile": "S:\\PROYECTOS\\Motorhouse\\src\\public\\images\\lmotohouse.png"
+      "password": "123214",
+      "phone": "091077433",
+      "role": "admin"
     },
     {
       "first_name": "Juan",
@@ -15,6 +14,7 @@
       "email": "jp77@gmail.com",
       "age": "24",
       "password": "1234",
+      "phone": "093077323",
       "role": "user"
     },
     {
@@ -23,6 +23,7 @@
       "email": "fedesal@gmail.com",
       "age": "26",
       "password": "4321",
+      "phone": "098345677",
       "role": "user"
     },
     {
@@ -31,6 +32,7 @@
       "email": "romidias@gmail.com",
       "age": "21",
       "password": "romi1",
+      "phone": "091234423",
       "role": "admin"
     }
   ]

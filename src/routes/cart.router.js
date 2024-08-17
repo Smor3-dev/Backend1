@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { cartModel } from "../models/cart.model.js";
-import { productModel } from "../models/product.model.js";
+import { cartModel } from "../daos/mongodb/models/cart.model.js";
+import { productModel } from "../daos/mongodb/models/product.model.js";
 import { validate } from "../middlewares/validation.middleware.js";
 import { cartDto } from "../dtos/cart.dto.js";
 import { uuid } from "uuidv4";
@@ -125,7 +125,6 @@ router.delete("/:id/products", async (req, res) => {
   }
 });
 
-// Entrega final
 router.post("/:id/purchase", async (req, res) => {
   try {
     const { id } = req.params;
@@ -138,7 +137,6 @@ router.post("/:id/purchase", async (req, res) => {
       });
     }
 
-    // Validar que la cantidad de productos dentro del carrito sea menor o igual al stock del producto
     const productsWithoutStock = [];
 
     cart.products.filter((p) => {
@@ -155,8 +153,6 @@ router.post("/:id/purchase", async (req, res) => {
         );
       }
     });
-
-    // Descontar stock del producto
 
     const ticket = await ticketModel.create({
       code: uuid(),
@@ -179,5 +175,7 @@ router.post("/:id/purchase", async (req, res) => {
     });
   }
 });
+
+
 
 export default router;

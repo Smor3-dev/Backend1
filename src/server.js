@@ -18,16 +18,18 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use("/api", routes);
 
 initializePassport();
 app.use(passport.initialize());
+
 
 app.use('/users', userRouter);
 app.use('/products', productRoutes);
 app.use('/carts', cartRouter);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRouter);
+app.use("/api", routes);
+
 
 app.use(errorHandler);
 

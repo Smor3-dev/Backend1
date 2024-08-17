@@ -1,7 +1,7 @@
 import passport from "passport";
 import local from "passport-local";
 import jwt from "passport-jwt";
-import { userModel } from "../models/user.model.js";
+import { userModel } from "../daos/mongodb/models/user.model.js";
 import { comparePassword } from "../utils/hash.js";
 import { config } from "./config.js";
 
@@ -10,29 +10,33 @@ const JWTStrategy = jwt.Strategy;
 const ExtractJWT = jwt.ExtractJwt;
 
 const initializePassport = () => {
-  // Login Strategy
+  // login strategy
   passport.use(
-    "login",
-    new LocalStrategy(
-      { usernameField: "email", passReqToCallback: true },
-      async (req, email, password, done) => {
-        try {
-          const user = await userModel.findOne({ email });
+      'login', 
+      new LocalStrategy(
+          { 
+              usernameField: 'email', 
+              passReqToCallback: true
+          } , 
+          async (req, email, password, done) => {
+              try {
+                  const user = await userModel.findOne({ email });
 
-          if (!user) {
-            return done(null, false, { message: "Usuario no encontrado" });
+                  if (!user) {
+                      return done(null, false, { message: 'Usuario no encontrado' });
+                  }
+
+                  if (!(await comparePassword(password, user.password))) {
+                      return done(null, false, { message: 'Contraseña incorrecta' });
+                  }
+
+                  return done(null, user);
+
+              } catch (error) {
+                  return done(error, false, { message: 'Error al autenticar' });
+              }
           }
-
-          if (!(await comparePassword(password, user.password))) {
-            return done(null, false, { message: "Contraseña incorrecta" });
-          }
-
-          return done(null, user);
-        } catch (error) {
-          done(error);
-        }
-      }
-    )
+      )
   );
 
   passport.serializeUser((user, done) => {
@@ -66,13 +70,23 @@ const initializePassport = () => {
   );
 };
 
+passport.deserializeUser(async (id, done) => {
+  try {
+      const user = await userModel.findById(id);
+      done(null, user);
+  } catch (error) {
+      done(error, false, { message: 'Error al deserializar usuario' });
+  }
+});
+
 function cookieExtractor(req) {
   let token = null;
   if (req && req.cookies) {
-    token = req.cookies["token"];
+      token = req.cookies["token"];
   }
-
+  
   return token;
 }
+
 
 export { initializePassport };

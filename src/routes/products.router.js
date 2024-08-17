@@ -1,15 +1,12 @@
 import { Router } from "express";
-const router = Router();
-
 import * as controller from "../controllers/product.controllers.js";
-
 import { __dirname } from "../utils.js";
-
 import { ProductManager } from "../manager/product.manager.js";
-const productManagerr = new ProductManager(`${__dirname}/Data/users.json`);
-
 import { productValidator } from '../middlewares/productValidator.js'
 import { authorizations } from "../middlewares/authorization.middleware.js";
+
+const router = Router();
+const productManagerr = new ProductManager(`${__dirname}/Data/users.json`);
 
 router.get('/', async(req, res) => {
     try {
@@ -81,6 +78,7 @@ router.delete('/', async(req, res)=>{
 router.get("/", controller.getAll);
 router.get("/:id", controller.getById);
 router.post("/", controller.create);
+router.post("/api/users", controller.create);
 router.put("/:id", controller.update);
 router.delete("/:id", controller.remove);
 
