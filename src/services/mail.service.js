@@ -21,7 +21,7 @@ class MailService {
         
         <p style="font-size: 16px; color: red">Si tienes alguna pregunta, no dudes en contactarnos.</p>
         
-        <img src="cid:AClmotohouse" alt="moto" style="width: 100px; height: 100px; border-radius: 50%;">
+        <img src="cid:lmotohouse" alt="moto" style="width: 100px; height: 100px; border-radius: 50%;">
         `;
         break;
 
@@ -48,7 +48,7 @@ class MailService {
     const info = await this.transporter.sendMail({
       from: '"Equipo de Mensajes Masivos" <sandbox.smtp.mailtrap.io>',
       to: "sa7ntiagomoreira77@gmail.com",
-      subject: "test",
+      subject: "testeo",
       html: message,
       attachments: [
         {
@@ -59,7 +59,14 @@ class MailService {
       ],
     });
 
-    // console.log(info);
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+      }
+      console.log("Email sent: " + info); 
+      
+    })
+     console.log(info);
   }
 }
 

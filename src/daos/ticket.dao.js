@@ -1,4 +1,4 @@
-import { ticketModel } from './models/ticket.model.js';
+import { ticketModel } from './mongodb/models/ticket.model.js';
 
 export const createTicket = async (ticketData) => {
   try {

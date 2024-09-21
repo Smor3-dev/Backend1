@@ -6,7 +6,6 @@ import { generateToken } from "../utils/jwt.js";
 import { validate } from "../middlewares/validation.middleware.js";
 import { authDto } from "../dtos/auth.dto.js";
 import { userDto } from "../dtos/user.dto.js";
-
 const router = Router();
 
 router.post("/login",

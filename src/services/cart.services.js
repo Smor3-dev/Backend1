@@ -1,7 +1,7 @@
 import ProductDaoMongoDB from "../daos/product.dao.js";
 import CartDaoMongoDB from "../daos/cart.dao.js";
 import { cartModel } from "../daos/mongodb/models/cart.model.js";
-import { createTicket } from '../daos/mongodb/ticket.dao.js';
+import { createTicket } from '../daos/ticket.dao.js';
 import { v4 as uuidv4 } from 'uuid';
 
 const cartDao = new CartDaoMongoDB();

@@ -9,6 +9,7 @@ import productRoutes from './routes/products.router.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { initMongoDB } from './db/database.js';
 import { initializePassport } from "./config/passport.config.js";
+import mocksRouter from './routes/mocks.router.js';
 
 const app = express();
 const PORT = 8080;
@@ -22,11 +23,11 @@ initializePassport();
 app.use(passport.initialize());
 
 
-app.use('/users', userRouter);
 app.use('/products', productRoutes);
 app.use('/carts', cartRouter);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRouter);
+app.use("/api/mocks", mocksRouter);
 
 
 app.use(errorHandler);
