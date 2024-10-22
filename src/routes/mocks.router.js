@@ -15,12 +15,10 @@ router.post('/generateData', async (req, res) => {
     try {
         const generatedUsers = await generateUsers(users);
         
-       
         const updatedUsers = generatedUsers.map(user => {
             user.pets = Array.from({ length: pets }, (_, index) => `pet${index + 1}`);
             return user;
         });
-
         
         await User.insertMany(updatedUsers);
         res.status(201).json({ message: 'Usuarios generados e insertados exitosamente.', users: updatedUsers });
@@ -46,5 +44,30 @@ router.get('/pets', async (req, res) => {
         res.status(500).json({ message: 'Error al obtener mascotas', error });
     }
 });
+/**
+ * @swagger
+ * /api/mocks/generateData:
+ *   post:
+ *     summary: Genera usuarios automáticamente
+ *     description: Genera un número específico de usuarios con información aleatoria.
+ *     parameters:
+ *       - in: body
+ *         name: body
+ *         description: Cantidad de usuarios a generar.
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             users:
+ *               type: integer
+ *               example: 20
+ *     responses:
+ *       201:
+ *         description: Usuarios generados e insertados exitosamente.
+ *       400:
+ *         description: Parámetros inválidos.
+ *       500:
+ *         description: Error al generar o insertar usuarios.
+ */
 
 export default router;

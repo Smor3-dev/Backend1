@@ -1,0 +1,24 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db 
+
+  motorhouse-app:
+    build: .
+    container_name: motorhouse
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mongo
+    volumes:
+      - S:/PROYECTOS/Motorhouse/src:/usr/src/app/src  
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/test  
+
+volumes:
+  mongo-data:

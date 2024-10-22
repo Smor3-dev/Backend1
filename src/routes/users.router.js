@@ -22,4 +22,90 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: Operaciones relacionadas con usuarios.
+ */
+
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     tags: [Users]
+ *     summary: Obtener todos los usuarios
+ *     description: Recupera una lista de todos los usuarios registrados.
+ *     responses:
+ *       200:
+ *         description: Lista de usuarios.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                   username:
+ *                     type: string
+ *                   email:
+ *                     type: string
+ *                   role:
+ *                     type: string
+ *                   pets:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *       500:
+ *         description: Error al obtener usuarios.
+ */
+
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   get:
+ *     tags: [Users]
+ *     summary: Obtener un usuario por ID
+ *     description: Recupera la información de un usuario específico mediante su ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del usuario a obtener.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Información del usuario.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 username:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 role:
+ *                   type: string
+ *                 pets:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *       404:
+ *         description: Usuario no encontrado.
+ *       500:
+ *         description: Error al obtener usuario.
+ */
+/**
+ * @swagger
+ * tags:
+ *   name: Mocks
+ *   description: Operaciones relacionadas con la generación de datos simulados.
+ */
+
 export default router;
